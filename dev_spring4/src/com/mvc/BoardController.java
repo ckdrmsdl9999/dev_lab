@@ -29,6 +29,9 @@ public class BoardController {
       //모델맵도 스프링지원, 정보를 화면에 보내야 하므로 모델맵 필요하다   
       List<Map<String,Object>> boardList = null;
       //화면에 조회결과를 출력하고 싶어요
+      
+      logger.info("getBoardList 호출성공");
+      
       boardList=boardLogic.getBoardList(pbmVO);
       pMap.addAttribute("boardList", boardList);
       

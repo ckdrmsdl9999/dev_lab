@@ -18,6 +18,13 @@
                 values(seq_boardmaster_no.currval,'1','1',100)     
     </insert>
     
+    <select id="getBoardList" resultType="map" parameterType="bmVO">
+   select bm.b_no, bm.b_title, bm.b_name, bm.b_date, bm.b_content,
+   bm.b_group, bm.b_pos, bm.b_step, bm.b_hit, bm.b_pw, bs.b_seq, bs.b_file, bs.b_size
+   from board_master bm, board_sub bs
+   where bm.b_no = bs.b_no
+   </select>
+    
 </mapper>
 
 

@@ -42,8 +42,14 @@ public class BoardDao {
    
    //Select:보드리스트
    public List<Map<String, Object>> getBoardList(BoardMasterVO pbmVO) {
-      // TODO Auto-generated method stub
-      return null;
+     
+	   logger.info("getBoardList(BoardMasterVO pbmVO) 호출성공");
+	   List<Map<String,Object>> boardList = null;
+	      boardList =
+	   sqlSessionTemplate.selectList("getBoardList",pbmVO);
+	   
+	   // TODO Auto-generated method stub
+      return boardList;
    }
    
    //Update
