@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- member VO 등록 시작  -->
+   	<typeAliases>
+   		<typeAlias alias ="jVO" type ="com.jibnawa.member.JibnawaMemberVO"/>
+   		<typeAlias alias ="sVO" type ="com.vo.jibnawaSubidVO"/>
+   		<typeAlias alias ="tVO" type ="com.vo.jibnawaTenderVO"/>
+   			<typeAlias alias ="aVO" type ="com.vo.jibnawaAuctionVO"/>
+	</typeAliases>
+   		
+	
+	<!-- member VO 등록 끝 -->
+	
+	<!-- mybatis mapper 등록 시작 -->
+	<mappers>
+		<mapper resource="com/mybatis/mapper/jibnawaMember.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaRauction.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaSearch.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaTender.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaSubid.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaAucIns.xml" />
+		<mapper resource="com/mybatis/mapper/jibnawaAuction.xml" />
+		
+	
+	</mappers>
+	<!-- mybatis mapper 등록 끝 -->
+	
+</configuration>

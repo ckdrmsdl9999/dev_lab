@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<bean id="message-source" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message_ko"/>
+	</bean>
+	
+	<!-- member 서비스 로직 등록  -->
+	<bean id="jibnawaMemberLogic" class="com.jibnawa.member.JibnawaMemberLogic"/>
+	<bean id="jibnawaRauctionLogic" class="com.jibnawa.rauction.JibnawaRauctionLogic"/>
+	<bean id="jibnawaSearchLogic" class="com.jibnawa.search.JibnawaSearchLogic"/>
+	 <bean id="jibnawaSubidLogic" class="com.jibnawa.auctiontable.JibnawaSubidLogic"/>
+   <bean id="jibnawaTenderLogic" class="com.jibnawa.auctiontable.JibnawaTenderLogic"/>
+		<bean id="jibnawaAucInsLogic" class="com.jibnawa.AucIns.JibnawaAucInsLogic"/>
+	<bean id="jibnawaAuctionConLogic" class="com.jibnawa.AuctionCon.JibnawaAuctionConLogic"/>
+	
+</beans>
+
+

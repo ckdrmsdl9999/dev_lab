@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TenderMapper">
+   
+   <select id="getjbTenderList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+      SELECT   	auc_comm_id      ,
+                    auc_comm_bigo    ,
+                    auc_start_date   ,
+                    auc_end_date     ,
+                    auc_success_cost ,
+                    auc_success_date ,
+                    auc_bigo         ,
+                    bid_email        ,
+                    bid_cost         ,
+                    mem_num          ,
+                    acc_code         ,
+                    rent_code        
+                    FROM ACU_COMM
+   </select>   
+   
+</mapper>

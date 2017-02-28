@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DeptMapper">
+	<select id="currentTime" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT TO_CHAR(sysdate,'YYYY-MM-DD') FROM dual
+	</select>
+	<select id="jibnawaMember" parameterType="jVO" resultType="java.util.HashMap">
+		SELECT mem_email, mem_name, mem_nickname, mem_pw, mem_phone_f,
+		mem_phone_m, mem_phone_e, mem_div
+		FROM member1 where mem_email is not
+		null
+	</select>
+	<delete id="memDelete" parameterType="jVO">
+		DELETE FROM member1
+		WHERE mem_email = #{mem_email}
+	</delete>
+</mapper>

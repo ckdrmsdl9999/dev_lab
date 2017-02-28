@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<select id="mailChk" parameterType="com.vo.JibnawaMemberVO"
+		resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM member1
+		WHERE mem_email = #{mem_email}
+	</select>
+	<select id="login" parameterType="com.vo.JibnawaMemberVO"
+		resultType="com.vo.JibnawaMemberVO">
+		SELECT mem_email, mem_nickname, mem_div
+		FROM member1
+		WHERE
+		mem_email =
+		#{mem_email}
+		AND mem_pw = #{mem_pw}
+	</select>
+	<insert id="sigin" parameterType="com.vo.JibnawaMemberVO">
+		INSERT INTO
+		member1(mem_email,mem_pw,mem_name,mem_nickname,mem_phone_f,mem_phone_m,mem_phone_e,mem_div)
+		VALUES
+		(#{mem_email},#{mem_pw},#{mem_name},#{mem_nickname},#{mem_phone_f},#{mem_phone_m},#{mem_phone_e},#{mem_div})
+	</insert>
+</mapper>
