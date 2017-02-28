@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.util.List" %>    
+<%
+	List<String> list = (List<String>)request.getAttribute("list");
+	for(String title:list){
+		out.print(title+"<br>");//제목1, 제목2, 제목3
+	}
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>getNewsList.do에 대한 응답페이지</title>
+</head>
+<body>
+
+</body>
+</html>

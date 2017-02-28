@@ -1,0 +1,59 @@
+package com.ajax.book;
+
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class BookDao {
+	SqlSessionFactory sqlMapper = null;
+	SqlSession sqlSes = null;
+	String resource = "com/mybatis/MapperConfig.xml";
+	public List<HashMap<String,Object>> getBookList()
+	{
+		List<HashMap<String,Object>> bookList = null;
+		try {
+			Reader reader = null;
+			//MapperConfig.xml문서를 읽어들인 정보를 가지고
+			//Reader객체를 생성합니다.
+			reader = Resources.getResourceAsReader(resource);
+			//위에서 생성된 Reader객체를 활용하여 SqlSessionFactory
+			//객체를 인스턴스화 합니다.
+			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+			//위 에서 생성된 SqlSessionFactory객체에서 제공하는
+			//openSession메소드를 호출하여 SqlSession객체를 생성함.
+			sqlSes = sqlMapper.openSession();//오라클서버와 커넥션 맺은상태
+			//필요한 SqlSession객체를 얻었으므로 Reader객체는 닫아줌.
+			reader.close();
+			//생성된 SqlSession객체에서 제공하는
+			//selectList메소드 호출 가능합니다.
+			//조회된 결과를 List에 담아 줍니다.
+			//해당 id에 쿼리문을 처리 요청하는 메소드
+			
+			bookList = sqlSes.selectList("getBookList");
+			//Object(BookVO) obj = sqlSes.selectOne("getBookDetail");
+			//Map map = sqlSes.selectMap("ab_title", HashMap|VO|int)
+/*			HashMap<String,Object> pMap 
+					= new HashMap<String,Object>();
+			pMap.put("ab_no", 1);
+			sqlSes.delete("bookDelete", pMap);*/
+			System.out.println("size : "+bookList.size());
+			for(HashMap pMap:bookList){
+				System.out.println(pMap.get("AB_TITLE"));
+				System.out.println(pMap.get("AB_PRICE"));
+			}
+		} catch (Exception e) {
+			//stack영역에 등록된 로그 정보 출력해 줍니다.
+			e.printStackTrace();
+		}
+		return bookList;
+	}
+	public static void main(String[] args){
+		BookDao bdao = new BookDao();
+		bdao.getBookList();
+	}
+}

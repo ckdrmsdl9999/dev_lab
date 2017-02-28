@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AjaxBookMapper">
+	<select id="totalRecord" parameterType="int" resultType="int">
+		SELECT count(ab_no) as total FROM ajax_book	
+	</select>
+	<select id="getBookList" resultType="com.vo.BookVO" parameterType="java.util.HashMap">
+        SELECT
+                   ab_no, ab_title, ab_author, ab_img
+			      ,ab_price, ab_publisher, ab_pubdate       
+         FROM(
+			        SELECT rownum rnum, ab_no, ab_title, ab_author, ab_img
+			                  ,ab_price, ab_publisher, ab_pubdate
+			          FROM ajax_book         
+                  )tb_book
+          <where>
+          	<if test="start !=null">
+          		<![CDATA[ AND tb_book.rnum >= #{start} ]]>
+          	</if>
+          	<if test="end !=null">
+          		<![CDATA[ AND tb_book.rnum <= #{end} ]]>
+          	</if>          
+          	<if test='ab_title !=null and choMode.equals("N")'>
+          		AND tb_book.ab_title LIKE '%'||#{ab_title}||'%'
+          	</if>
+          	<if test='ab_title !=null and choMode.equals("Y")'>
+          		AND func_chosungList(tb_book.ab_title) LIKE '%'||#{ab_title}||'%'
+          	</if>          	
+          	<if test='ab_no !=null'>
+          		AND ab_no = #{ab_no}
+          	</if>
+        <!-- 	<if test="ab_author !=null">
+          		AND tb_book.ab_author LIKE '%'||#{ab_author}||'%'
+          	</if>
+          	<if test="ab_publisher !=null">
+          		AND tb_book.ab_publisher LIKE '%'||#{ab_publisher}||'%'
+          	</if>     -->        	          	
+          </where>
+        ORDER BY tb_book.ab_pubdate desc, tb_book.ab_title asc 
+	</select>     
+	<insert id="bookInsert" parameterType="java.util.HashMap">
+		INSERT INTO ajax_book(ab_no, ab_title, ab_author, ab_img
+		                              , ab_price, ab_publisher, ab_size, ab_pubdate)
+		                      VALUES(seq_book_no.nextval, #{ab_title},#{ab_author}, #{ab_img}
+		                               ,#{ab_price},#{ab_publisher},#{ab_size},#{ab_pubdate})	
+	</insert>
+	<!-- HashMap<String,Object> pMap = new HashMap<String,Object>(); 
+			pMap.put("ab_no",1);
+			delete("bookDelete",pMap);
+	-->
+	<delete id="bookDelete" parameterType="java.util.HashMap">
+		DELETE FROM ajax_book
+		 WHERE ab_no = #{ab_no}
+	</delete>
+</mapper>

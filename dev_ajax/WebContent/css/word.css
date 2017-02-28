@@ -1,0 +1,10 @@
+@CHARSET "EUC-KR";
+div#d_word{
+	position : absolute;
+}
+.listIn{
+	background:#CCFFFF;
+}
+.listOut{
+	background:#FFFFFF;
+}

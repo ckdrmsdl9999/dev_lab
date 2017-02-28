@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ajax">
+	 <select id="getwordList" resultType="com.vo.WordVO" parameterType="com.vo.WordVO">
+    
+    Select W_WORD from ajax_word
+    
+        <where>
+        <if test="word!=null"> <!-- ab_title 은 파라미터로 온 거 -->
+        AND W_WORD LIKE #{word}||'%' <!-- 앞에건 테이블컬럼, 뒤에건 파라미터로 온 거 -->
+        </if>
+       </where>
+   </select>  
+</mapper>
