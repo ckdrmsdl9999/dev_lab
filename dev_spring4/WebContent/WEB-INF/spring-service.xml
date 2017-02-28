@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+ http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+ http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd" 
+ >
+
+	<bean id="message-source" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message_ko"/>
+	</bean>
+	<bean id="deptLogic" class="com.mvc.DeptLogic"/>
+	<bean id="commonLogic" class="com.mvc.CommonLogic"/>
+	<bean id="empLogic" class="com.mvc.EmpLogic"/>
+	<bean id="boardLogic" class="com.mvc.BoardLogic"/>
+
+
+<aop:config>
+   <aop:pointcut id="point-cut" expression="execution(* com.mvc.*Logic.*(..))"/>
+   <aop:advisor advice-ref="tx-advice" pointcut-ref="point-cut"/>
+   </aop:config>
+   <tx:advice id="tx-advice" transaction-manager="transactionManager"/>
+
+</beans>
+
+
+
+
+
+
+

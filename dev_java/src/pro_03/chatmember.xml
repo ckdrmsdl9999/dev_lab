@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<!--  -->
+<sqlMap namespace="ChatmemberVO">
+	<typeAlias 
+		alias="ChatmemberVO" 
+		type="pro_03.ChatmemberVO"/>
+	<!-- 회원 탈퇴 -->
+	<delete id="delete" parameterClass="ChatmemberVO">
+		DELETE FROM chatmember WHERE id = #id#	
+	</delete>	
+	<!-- 회원가입 -->
+	<insert id="join" parameterClass="ChatmemberVO">
+		INSERT INTO chatmember(id, password, e_mail ,TEL,nickname, gender,BIRTHDAY, registerdate)
+                 VALUES (#id#, #password#,#e_mail#,null, #nickname# ,#gender#,null, TO_CHAR(sysdate,'YYYY-MM-DD'))
+	</insert>
+	<!-- ID값만 조회 할 시 회원가입 여부 판단. password까지 사용시 로그인 가능여부 확인. 사용(로그인 시, 가입시 ID 중복 확인 시.) -->
+	<select id="loginConfig" parameterClass="ChatmemberVO" resultClass="ChatmemberVO">
+		SELECT id, e_mail, nickname, gender from chatmember
+		<dynamic prepend="WHERE">
+			<isGreaterThan prepend="AND" property="id" compareValue="0">
+				id= #id# and password = #password#
+			</isGreaterThan>
+		</dynamic>		
+	</select>
+	<select id="id_check" parameterClass="pro_03.ChatmemberVO" resultClass="ChatmemberVO">
+		SELECT nickname from chatmember where id= #id#	
+	</select>
+	<select id="nick_check" parameterClass="pro_03.ChatmemberVO" resultClass="ChatmemberVO">
+		SELECT id from chatmember where nickname = #nickname#	
+	</select>
+<update id="change" parameterClass="pro_03.ChatmemberVO">
+      UPDATE chatmember
+      SET e_mail = #e_mail#
+      , nickname =#nickname#
+      , gender = #gender#
+      , password = #password#
+      WHERE  id = #id#
+   </update>
+</sqlMap>

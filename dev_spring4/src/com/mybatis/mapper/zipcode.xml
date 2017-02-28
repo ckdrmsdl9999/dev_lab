@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommonMapper">
+	
+	<select id="getCommonList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from zipcode_t 
+	
+	<where> 
+    <if test="zdo != null">
+    
+    AND zdo LIKE '%'||#{zdo}||'%'
+         
+    </if> 
+    <if test="sigu != null">
+         AND sigu LIKE '%'||#{sigu}||'%'
+    </if> 
+    <if test="dong != null">
+             AND dong LIKE '%'||#{dong}||'%'
+    </if> 
+    <if test="ri != null">
+        AND ri LIKE '%'||#{ri}||'%'
+    </if> 
+      <if test="aptname != null">
+        AND aptname LIKE '%'||#{aptname}||'%'
+    </if> 
+     
+      <if test="address != null">
+        AND address LIKE '%'||#{address}||'%'
+    </if> 
+   		</where>	   
+	</select>	
+	
+	<select id="getCommonList2" parameterType="zVO" resultType="java.util.Map">
+		select * from zipcode_t 
+	
+	<where> 
+    <if test="zdo != null">
+    
+    AND zdo LIKE '%'||#{zdo}||'%'
+         
+    </if> 
+    <if test="sigu != null">
+         AND sigu LIKE '%'||#{sigu}||'%'
+    </if> 
+    <if test="dong != null">
+             AND dong LIKE '%'||#{dong}||'%'
+    </if> 
+    <if test="ri != null">
+        AND ri LIKE '%'||#{ri}||'%'
+    </if> 
+      <if test="aptname != null">
+        AND aptname LIKE '%'||#{aptname}||'%'
+    </if> 
+     
+      <if test="address != null">
+        AND address LIKE '%'||#{address}||'%'
+    </if> 
+   		</where>	   
+	</select>	
+
+</mapper>
+
+

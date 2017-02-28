@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/mvc
+ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+ http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+ http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd" 
+ >
+<bean id="default-handler-mapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	<mvc:annotation-driven/>
+	<tx:annotation-driven/>
+	<mybatis:scan base-package="com.mybatis.mapper"/>
+ 	<context:component-scan base-package="com.mvc">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>	
+	</context:component-scan>
+ 	<context:component-scan base-package="com.test">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>	
+	</context:component-scan>	
+ 	<mvc:resources location="/images/" mapping="/images/**"/>	
+ 	<mvc:resources location="/js/" mapping="/js/**"/>	
+<!-- 첨부 파일 관련 설정 추가 -->	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1048576"/>
+		<property name="maxInMemorySize" value="10240"/>
+		<property name="defaultEncoding" value="ISO-8859-1"/>
+		
+	</bean>	
+	<bean name="/insaList.kosmo" class="com.di.ListController">
+		<property name="insaBean">
+			<list>
+				<value>Hi</value>
+				<value>Have a Good Time!!!</value>
+				<value>Have a Nice Day!!!</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

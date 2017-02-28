@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	
+ <insert id="boardMasterInsert" parameterType="bmVO">
+        insert into board_master(b_no,b_title,b_name,b_content,b_pw,b_date
+                                ,b_group,b_pos,b_step,b_hit)
+                            values(seq_boardmaster.nextval,'1','1','1','1',
+                            TO_CHAR(sysdate,'YYYY-MM-DD'),0,0,0,0)
+    </insert>
+    <insert id="boardSubInsert" parameterType="bsVO">
+    
+     <selectKey keyProperty="b_no" resultType="int" order="BEFORE"> 
+         select seq_boardmaster_no.currval as b_no from dual 
+          </selectKey> 
+    
+        insert into board_sub(b_no,b_seq,b_file,b_size)
+                values(seq_boardmaster_no.currval,'1','1',100)     
+    </insert>
+    
+</mapper>
+
+
