@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>a2.html</title>
+<script type="text/javascript">
+	function move(){
+		//location.href="./b2.html";
+		//dev_html /day3/b2Jsp.jsp
+		var v_id = document.getElementById("imem_id").value;//?-사용자가 입력한 값
+		var vh_val=document.getElementById("ih_val").value;//150
+		location.href="./b2Jsp.jsp?mem_id="+v_id+"&h_val="+vh_val;//주소창이 바뀐다.
+	}
+</script>
+</head>
+<body>
+<form id="if_a2">
+<!--
+input 태그에 hidden속성을 사용하면 화면없이도 이동 페이지에
+값을 전달할 수 있습니다.
+  -->
+화면에 안보임<input type="hidden" name="h_val" id="ih_val" value="150">
+<br>
+화면에 보인다<input type="text" name="mem_id" id="imem_id">
+<a href="javascript:move()">이동</a>
+</form>
+</body>
+</html>

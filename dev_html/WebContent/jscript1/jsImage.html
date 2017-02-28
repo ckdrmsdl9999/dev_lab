@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>이미지 제어하기</title>
+<script type="text/javascript">
+//자바스크립트 프레임워크 - jquery(크로스브라우징서비스)
+	function move(){
+		//document=jsImage.html
+		//pencil=img태그의 name
+		//src(source)=이미지 파일이름(상대경로)
+		document.pencil.src = "../images/mans.jpg";
+	}
+</script>
+</head>
+<body>
+<img name="pencil" src="../images/pencils.jpg"><br>
+<button onClick="document.images[0].border=10">보더속성</button>
+<a href="javascript:move()">링크</a>
+<script type="text/javascript">
+	document.pencil.width=200;
+</script>
+</body>
+</html>

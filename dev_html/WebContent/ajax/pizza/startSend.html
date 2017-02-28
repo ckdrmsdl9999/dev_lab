@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>startSend.html(응답페이지입니다.)</title>
+<script type="text/javascript">
+	function win_close(){
+		//아래코드는 필요한 부분만 갱신처리된다.
+		//opener.document.getElementById("imem_id").value = '';
+		//opener.document.getElementById("imem_pw").value = '';
+		//아래코드는 전체 문서를 새로 읽어온다.(화면이 깜박인다.)
+		opener.location.reload();
+		self.close();
+	}
+</script>
+</head>
+<body>
+start.html문서에 대한 응답페이지 입니다.<br>
+start.html문서에서 입력받은 값을 얻어 올 수 없습니다.<br>
+문제 해결 방법<br>
+응답 페이지의 확장자를 jsp페이지로 가져가면 가능해 집니다.<br>
+<input type="button" value="닫기" onClick="win_close()">
+</body>
+</html>

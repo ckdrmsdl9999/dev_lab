@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 
+페이지 이동 처리 하기 - 첫번째(form전송)
+ -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>start.html(시작페이지)</title>
+<script type="text/javascript" src="../../js/commons.js"></script>
+<script type="text/javascript">
+	function send(){
+		//action속성값에 정의된 페이지로 이동됩니다.
+		document.getElementById("if_start").submit();
+	}
+	function move(mem_id){
+		alert("mem_id : "+mem_id.value);
+		location.href="startSend.html";
+	}
+	function popupMove(){
+		var u_memid = document.getElementById("imem_id").value;
+		var u_mempw = document.getElementById("imem_pw").value;
+		cmm_window_popup('startSend.html?mem_id='+u_memid
+				                                         +'&mem_pw='+u_mempw
+				                      ,'600'
+				                      ,'400'
+				                      ,'startSend')		
+	}
+</script>
+</head>
+<body>
+<form name="f_start" id="if_start" 
+          method="get" action="startSend.html">
+아이디 :<input type="text" id="imem_id">
+비   번 :<input type="text" id="imem_pw">           
+<input type="button" value="전송"  onClick="send()"><br>    
+<a href="javascript:move(document.getElementById('imem_id'))">
+이동(startSend.html)
+</a>
+<br>
+<a href="javascript:popupMove()">팝업(startSend.html)</a>      
+</form>
+</body>
+</html>
