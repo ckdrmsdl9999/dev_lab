@@ -12,7 +12,20 @@
 <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/dev_spring4/js/commons.js"></script>
+
+<script type="text/javascript">
+
+function writeForm()
+
+{
+	
+	$("#dlg_boardIns").dialog('open').dialog('setTitle','글등록');
+	
+	
+	}
+
+
+</script>
 </head>
 <body>
 <script type="text/javascript">
@@ -44,10 +57,10 @@
 <!-- 버튼 추가 -->
    <tr>
       <td>
-      <a href="" class="easyui-linkbutton" iconCls="icon-search" onclick="searchALL()">전체조회</a>
-      <a href="" class="easyui-linkbutton" iconCls="icon-add" onclick="writeForm()">글등록</a>
-      <a href="" class="easyui-linkbutton" iconCls="icon-edit" onclick="updateForm()">수정</a>
-      <a href="" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteForm()">글삭제</a>
+      <a href="getBoardList.kosmo" class="easyui-linkbutton" iconCls="icon-search" onclick="searchALL()">전체조회</a>
+      <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="writeForm()">글등록</a>
+      <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="updateForm()">수정</a>
+      <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteForm()">글삭제</a>
       <td>
    </tr>
 </table>
@@ -81,5 +94,44 @@
 <!-- 페이지네이션 -->   
 <div id="pg_board" class="easyui-pagination" style="width:1000px;height:20px"></div>
 <!-- 페이지네이션 끝-->   
+
+
+
+<!-- 글등록 화면 추가 시작 -->  
+<div id="dlg_boardIns" buttons = "#dlg_btnInsert" class="easyui-dialog" closed="true" style="width:600px">
+<form id="f_BoardIns" method="post" enctype="multiprat/form-data" style="padding:20px 50px">
+<div style="margin-bottom:10px">
+<input name="b_tile" class="easyui-textbox" label="제목" required="true" style="width:100%">
+</div>
+<div style="margin-bottom:10px">
+<input name="b_name" class="easyui-textbox" label="작성자" required="true" style="width:100%">
+</div>
+<div style="margin-bottom:10px">
+<input name="b_content" class="easyui-textbox" multiline="true" label="내용" required="true" style="width:100%;height:120px">
+</div>
+<div style="margin-bottom:10px">
+<input name="bfile" class="easyui-filebox" label="첨부파일" required="true" style="width:100%">
+</div>
+<div style="margin-bottom:10px">
+<input name="b_pw" class="easyui-textbox" label="비밀번호" required="true" style="width:100%">
+</div>
+</form>
+</div>
+
+<div id="dlg_btnInsert">
+  <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="boardInsert()">저장</a>
+  <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_boardIns').dialog('close')">취소</a>
+
+
+</div>
+
+
+
+
+
+
+
+
+
 </body>
 </html>

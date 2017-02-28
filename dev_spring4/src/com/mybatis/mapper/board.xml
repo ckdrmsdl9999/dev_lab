@@ -5,7 +5,7 @@
  <insert id="boardMasterInsert" parameterType="bmVO">
         insert into board_master(b_no,b_title,b_name,b_content,b_pw,b_date
                                 ,b_group,b_pos,b_step,b_hit)
-                            values(seq_boardmaster.nextval,'1','1','1','1',
+                            values(seq_boardmaster_no.nextval,'1','1','1','1',
                             TO_CHAR(sysdate,'YYYY-MM-DD'),0,0,0,0)
     </insert>
     <insert id="boardSubInsert" parameterType="bsVO">
