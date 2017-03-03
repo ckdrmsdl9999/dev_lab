@@ -59,7 +59,7 @@
    <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="javascript:location.href='./getBoardList.kosmo'">글목록</a>
 </div>
 <div align="left" id="tt">
-   <a href="#" class="easyui-linkbutton" iconCls="icon-man" onclick="updateForm()">이메일</a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-man" onclick="mailForm()">이메일</a>
 
 
 </div>
