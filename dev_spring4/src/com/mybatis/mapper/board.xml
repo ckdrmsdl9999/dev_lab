@@ -1,30 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
-	
- <insert id="boardMasterInsert" parameterType="bmVO">
-        insert into board_master(b_no,b_title,b_name,b_content,b_pw,b_date
-                                ,b_group,b_pos,b_step,b_hit)
-                            values(seq_boardmaster_no.nextval,'1','1','1','1',
-                            TO_CHAR(sysdate,'YYYY-MM-DD'),0,0,0,0)
+	<select id="getBoardList" resultType="map" parameterType="bmVO">
+		SELECT
+		       bm.b_no, bm.b_title, bm.b_name, bm.b_date
+		      ,bm.b_content, bm.b_group, bm.b_pos, bm.b_step
+		      ,bm.b_hit,bm.b_pw
+		      ,bs.b_seq, bs.b_file, bs.b_size
+		  FROM board_master bm, board_sub bs
+		  <where>
+				AND bm.b_no = bs.b_no		
+		  	<if test="b_no>0">
+		  		AND bm.b_no = #{b_no}
+		  	</if>
+		  </where>
+		ORDER BY bm.b_no desc 
+	</select>
+	<select id="getBgroup" parameterType="bmVO" resultType="int">
+		SELECT
+		       NVL((SELECT
+		       /*+index_desc(board_master i_board_group)*/ b_group
+		              FROM board_master 
+		             WHERE rownum = 1 
+		               AND b_group > 0 ),0)+1 b_group
+		  FROM dual	
+	</select>
+	<update id="bStepUpdate" parameterType="bmVO">
+	 	UPDATE board_master
+	 	  SET b_step = b_step + 1
+	 	  WHERE b_group = #{b_group}
+	 	     AND b_step > #{b_step} 
+	</update>
+    <insert id="boardMasterInsert" parameterType="bmVO">
+		INSERT INTO board_master(b_no, b_title, b_name, b_content
+		                        ,b_pw, b_date, b_group, b_pos, b_step
+		                        ,b_hit)
+		                  values(seq_boardmaster_no.nextval,#{b_title},#{b_name},#{b_content}
+		                        ,#{b_pw},TO_CHAR(sysdate,'YYYY-MM-DD'),#{b_group},#{b_pos},#{b_step}
+		                        ,0) 
     </insert>
     <insert id="boardSubInsert" parameterType="bsVO">
-    
-     <selectKey keyProperty="b_no" resultType="int" order="BEFORE"> 
-         select seq_boardmaster_no.currval as b_no from dual 
-          </selectKey> 
-    
-        insert into board_sub(b_no,b_seq,b_file,b_size)
-                values(seq_boardmaster_no.currval,'1','1',100)     
-    </insert>
-    
-    <select id="getBoardList" resultType="map" parameterType="bmVO">
-   select bm.b_no, bm.b_title, bm.b_name, bm.b_date, bm.b_content,
-   bm.b_group, bm.b_pos, bm.b_step, bm.b_hit, bm.b_pw, bs.b_seq, bs.b_file, bs.b_size
-   from board_master bm, board_sub bs
-   where bm.b_no = bs.b_no
-   </select>
-    
+    	<selectKey keyProperty="b_no" resultType="int" order="BEFORE">
+			select seq_boardmaster_no.currval as b_no from dual
+		</selectKey>
+		INSERT INTO board_sub(b_no, b_seq, b_file, b_size)
+		               VALUES(#{b_no},'1',#{b_file},#{b_size})
+    </insert>    
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

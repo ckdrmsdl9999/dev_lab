@@ -1,5 +1,7 @@
 package com.vo;
 
+import com.util.HangulConversion;
+
 public class BoardMasterVO {
 	
 	private int  b_no      = 0;
@@ -22,19 +24,19 @@ public class BoardMasterVO {
 		return b_title;
 	}
 	public void setB_title(String b_title) {
-		this.b_title = b_title;
+		this.b_title = HangulConversion.toKor(b_title);
 	}
 	public String getB_name() {
 		return b_name;
 	}
 	public void setB_name(String b_name) {
-		this.b_name = b_name;
+		this.b_name = HangulConversion.toKor(b_name);
 	}
 	public String getB_content() {
 		return b_content;
 	}
 	public void setB_content(String b_content) {
-		this.b_content = b_content;
+		this.b_content = HangulConversion.toKor(b_content);
 	}
 	public int getB_hit() {
 		return b_hit;
