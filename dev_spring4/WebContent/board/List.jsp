@@ -79,10 +79,10 @@
 %>
 	<tr>
 		<td><%=rMap.get("B_NO") %></td>
-		<td align="left"><%=rMap.get("B_TITLE") %></td>
+		<td align="left"><a href="./getBoardDetail.kosmo?b_no=<%=rMap.get("B_NO") %>"><%=rMap.get("B_TITLE") %></a></td>
 		<td><%=rMap.get("B_NAME") %></td>
 		<td><%=rMap.get("B_DATE") %></td>
-		<td><%=rMap.get("B_FILE") %></td>
+		<td><a href="downLoad.jsp?b_file=<%=rMap.get("B_FILE")%>"><%=rMap.get("B_FILE") %></td>
 		<td><%=rMap.get("B_HIT") %></td>
 	</tr>
 <%

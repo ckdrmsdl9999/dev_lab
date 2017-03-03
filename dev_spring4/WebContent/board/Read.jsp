@@ -33,7 +33,7 @@
 		$("#b_file").textbox('setValue','<%=rMap.get("B_FILE")%>');
 	});
 </script>
-<div id="p" class="easyui-panel" title="글상세보기" style="width:800px;height:350px;padding:20px 20px;background:#fafafa;"
+<div id="p" class="easyui-panel" data-options="footer:'#footer',tools:'#tt'" title="글상세보기" style="width:800px;height:350px;padding:20px 20px;background:#fafafa;"
         data-options="iconCls:'icon-save',closable:true,
                 collapsible:true,minimizable:true,maximizable:true">
 	<div style="margin-bottom:10px">
@@ -52,5 +52,16 @@
 		<input id="b_file" name="b_file" class="easyui-textbox" label="첨부파일" required="true" style="width:90%">
 	</div>
 </div>	
+<div align="right" id="footer">
+   <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="searchA%LL()">답글</a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="updateForm()">글수정</a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="writeForm()">글삭제</a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="javascript:location.href='./getBoardList.kosmo'">글목록</a>
+</div>
+<div align="left" id="tt">
+   <a href="#" class="easyui-linkbutton" iconCls="icon-man" onclick="updateForm()">이메일</a>
+
+
+</div>
 </body>
 </html>
